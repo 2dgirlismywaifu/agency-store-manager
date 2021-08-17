@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -243,7 +243,7 @@ public class LoginForm extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,"Đăng nhập thành công",
                         "Đăng Nhập",JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
-                    MainForm mf = new MainForm();
+                    HomePageForm mf = new HomePageForm();
                     mf.setVisible(true);
                     mf.setResizable(false);
                     mf.pack();

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,14 +17,14 @@ import java.sql.ResultSet;
  *
  * @author honkaiwaifu
  */
-public class ToChucDaiLy extends javax.swing.JFrame {
+public class AgentOrganization extends javax.swing.JFrame {
     Connection con = NewConnection.getConnection();
     PreparedStatement ps, ps1;
     ResultSet rs;
     /**
      * Creates new form ToChucDaiLy
      */
-    public ToChucDaiLy() {
+    public AgentOrganization() {
         initComponents();
         User_load();
     }
@@ -38,7 +38,7 @@ public class ToChucDaiLy extends javax.swing.JFrame {
                 ToiDaField.setText(rs.getString("SoDaiLyToiDa"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ToChucDaiLy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentOrganization.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
@@ -171,7 +171,7 @@ public class ToChucDaiLy extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Cập nhật thành công","Đại lý",JOptionPane.INFORMATION_MESSAGE);
             ps1.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ToChucDaiLy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentOrganization.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -197,20 +197,21 @@ public class ToChucDaiLy extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ToChucDaiLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentOrganization.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ToChucDaiLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentOrganization.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ToChucDaiLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentOrganization.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ToChucDaiLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentOrganization.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ToChucDaiLy tc = new ToChucDaiLy();
+                AgentOrganization tc = new AgentOrganization();
                 tc.setVisible(true);
                 tc.setResizable(false);
             }

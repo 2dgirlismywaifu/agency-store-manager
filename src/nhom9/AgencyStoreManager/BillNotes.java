@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +30,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author honkaiwaifu
  */
-public class PhieuXuatHang extends javax.swing.JFrame {
+public class BillNotes extends javax.swing.JFrame {
     Connection con = NewConnection.getConnection();
     PreparedStatement ps, ps1, ps2;
     ResultSet rs, rs1, rs2;
@@ -38,7 +38,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
     /**
      * Creates new form PHIEUXUATHANG
      */
-    public PhieuXuatHang() {
+    public BillNotes() {
         initComponents();
         phieuxuat_load();
     }
@@ -385,7 +385,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
                 
                 phieuxuat_load();
             } catch (SQLException ex) {
-                Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
@@ -406,13 +406,13 @@ public class PhieuXuatHang extends javax.swing.JFrame {
                 NameField.setText(String.valueOf(name));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");       
         try {
             DatePicker.setDate(sdf.parse(d.getValueAt(selectIndex, 3).toString()));
         } catch (ParseException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
            
         MaPhieuXuatField.setEnabled(false);
@@ -440,7 +440,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
                 jButton1.setEnabled(true);
                 phieuxuat_load();
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jButton2ActionPerformed
     //làm mới
@@ -467,7 +467,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
                 jButton1.setEnabled(true);
                 phieuxuat_load();
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jButton4ActionPerformed
     //thoát form
@@ -490,7 +490,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
                 NameField.setText(String.valueOf(name));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_MaDaiLyListPopupMenuWillBecomeInvisible
 
@@ -503,7 +503,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
     //chi tiết đơn hàng
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-         ChiTietXuatHang xh = new ChiTietXuatHang();
+         ShipmentDetails xh = new ShipmentDetails();
          xh.setVisible(true);
          xh.setResizable(false);
          xh.pack();
@@ -536,7 +536,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
             jReportsViewer.setFitWidthZoomRatio();
             jReportsViewer.setVisible(true);
         } catch (JRException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -565,7 +565,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
                 jButton1.setEnabled(true);
                 phieuxuat_load();
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jButton9ActionPerformed
     
@@ -587,7 +587,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
                MaDaiLyList.addItem(maDaiLy);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
         //bảng các phiếu xuất
         try {           
@@ -613,7 +613,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
              d.fireTableDataChanged();
             
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public void xuathang_load() { //load từ chi tiết xuất hàng
@@ -646,7 +646,7 @@ public class PhieuXuatHang extends javax.swing.JFrame {
              d1.fireTableDataChanged();
             
         } catch (SQLException ex) {
-            Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
@@ -666,21 +666,23 @@ public class PhieuXuatHang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PhieuXuatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BillNotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PhieuXuatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BillNotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PhieuXuatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BillNotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PhieuXuatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BillNotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PhieuXuatHang px = new PhieuXuatHang();
+                BillNotes px = new BillNotes();
                 px.setVisible(true);
                 px.setResizable(false);
                 px.setTitle("Phiếu xuất hàng");

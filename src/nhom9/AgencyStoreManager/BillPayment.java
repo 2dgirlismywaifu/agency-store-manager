@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author honkaiwaifu
  */
-public class ThuTien extends javax.swing.JFrame {
+public class BillPayment extends javax.swing.JFrame {
     Connection con = NewConnection.getConnection();
     PreparedStatement ps, ps1;
     ResultSet rs;
@@ -30,7 +30,7 @@ public class ThuTien extends javax.swing.JFrame {
     /**
      * Creates new form ThuTien
      */
-    public ThuTien() {
+    public BillPayment() {
         initComponents();
         User_load();
     }
@@ -361,7 +361,7 @@ public class ThuTien extends javax.swing.JFrame {
                     }
               }
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
@@ -379,7 +379,7 @@ public class ThuTien extends javax.swing.JFrame {
         try {
             DatePicker.setDate(sdf.parse(d.getValueAt(selectIndex, 5).toString()));
         } catch (ParseException ex) {
-            Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
         TienThuField.setText(d.getValueAt(selectIndex, 6).toString());
         String madl = MaDaiLyList.getSelectedItem().toString();
@@ -392,7 +392,7 @@ public class ThuTien extends javax.swing.JFrame {
                 NameField.setText(String.valueOf(name));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
         MaPhieuThuField.setEnabled(false);
         jButton1.setEnabled(false);
@@ -448,7 +448,7 @@ public class ThuTien extends javax.swing.JFrame {
                     }
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
     //xoá phiếu thu tiền
@@ -473,7 +473,7 @@ public class ThuTien extends javax.swing.JFrame {
                 TienThuField.setText("");
                 User_load();
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
     //xoá dữ liệu đã nhập trong fieldtext
@@ -510,7 +510,7 @@ public class ThuTien extends javax.swing.JFrame {
                 EmailField.setText(String.valueOf(email));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }                        
     }//GEN-LAST:event_MaDaiLyListPopupMenuWillBecomeInvisible
 
@@ -534,7 +534,7 @@ public class ThuTien extends javax.swing.JFrame {
                MaDaiLyList.addItem(maDaiLy);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
         
        try {
@@ -563,7 +563,7 @@ public class ThuTien extends javax.swing.JFrame {
             }
              d.fireTableDataChanged();
         } catch (SQLException ex) {
-            Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public static void main(String args[]) {
@@ -580,20 +580,21 @@ public class ThuTien extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThuTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BillPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThuTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BillPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThuTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BillPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThuTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BillPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ThuTien t = new ThuTien();
+                BillPayment t = new BillPayment();
                 t.setVisible(true);
                 t.setResizable(false);
                 t.setTitle("Phiếu thu tiền");

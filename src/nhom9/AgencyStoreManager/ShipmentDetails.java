@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author honkaiwaifu
  */
-public class ChiTietXuatHang extends javax.swing.JFrame {
+public class ShipmentDetails extends javax.swing.JFrame {
     Connection con = NewConnection.getConnection();
     PreparedStatement ps, ps1, ps2;
     ResultSet rs, rs1, rs2;
@@ -29,7 +29,7 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
     /**
      * Creates new form ThuTien
      */
-    public ChiTietXuatHang() {
+    public ShipmentDetails() {
         initComponents();
         User_load();
     }
@@ -335,7 +335,7 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
                 User_load();
                 loadchitiet();
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this,"Phiếu này không tồn tại!\nBạn đã lưu phiếu chưa?","Phiếu xuất hàng",JOptionPane.ERROR_MESSAGE);
             }
             
@@ -392,7 +392,7 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
                 User_load();
                 loadchitiet();
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
     //xoá phiếu xuất hàng
@@ -420,7 +420,7 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
                 User_load();
                 loadchitiet();
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
     //làm mới
@@ -455,7 +455,7 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
                 PriceField.setText(String.valueOf(defprice));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ChiTietXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ShipmentDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_MaMHListPopupMenuWillBecomeInvisible
 
@@ -473,7 +473,7 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
      */
     public void User_load() {
         
-        MaPhieuXuatField.setText(PhieuXuatHang.MaPhieuXuatField.getText());
+        MaPhieuXuatField.setText(BillNotes.MaPhieuXuatField.getText());
         MaPhieuXuatField.setEditable(false);
         MaMHList.removeAllItems();
         MaMHList.addItem("Chọn mã mặt hàng");
@@ -489,7 +489,7 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
                MaMHList.addItem(type);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }        
       
     }
@@ -522,7 +522,7 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
              d.fireTableDataChanged();
             
         } catch (SQLException ex) {
-            Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -540,14 +540,18 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChiTietXuatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShipmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChiTietXuatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShipmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChiTietXuatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShipmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChiTietXuatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShipmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -556,7 +560,7 @@ public class ChiTietXuatHang extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ChiTietXuatHang xh = new ChiTietXuatHang();
+                ShipmentDetails xh = new ShipmentDetails();
                 xh.setVisible(true);
                 xh.setResizable(false);
                 xh.setTitle("Phiếu xuất hàng");

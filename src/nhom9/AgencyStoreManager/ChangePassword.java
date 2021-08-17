@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import java.awt.event.KeyEvent;
 import java.nio.charset.StandardCharsets;
@@ -226,7 +226,7 @@ public class ChangePassword extends javax.swing.JFrame {
         int asking0 = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn thoát?","Thay dổi mật khẩu",JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
         if (asking0 == JOptionPane.YES_OPTION ) {
             this.dispose();
-            new MainForm().setVisible(true);
+            new HomePageForm().setVisible(true);
             
         } else if (asking0 == JOptionPane.NO_OPTION){
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -269,7 +269,7 @@ public class ChangePassword extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null,"Thay đổi mật khẩu thành công!\nVui lòng đăng nhập lại!",
                                 "",JOptionPane.INFORMATION_MESSAGE);
                             this.dispose();
-                            new MainForm().dispose();
+                            new HomePageForm().dispose();
                             LoginForm lf = new LoginForm();
                             lf.setVisible(true);
                             lf.setResizable(false);
@@ -317,7 +317,7 @@ public class ChangePassword extends javax.swing.JFrame {
     }//GEN-LAST:event_ShowPasswordActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       new MainForm().setVisible(true);
+       new HomePageForm().setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     private void oldpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oldpasswordKeyPressed

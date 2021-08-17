@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ import net.proteanit.sql.DbUtils;
  *
  * @author honkaiwaifu
  */
-public class DAILYDOC extends javax.swing.JFrame {
+public class InforAgency extends javax.swing.JFrame {
     Connection con = NewConnection.getConnection();
     PreparedStatement ps, ps1, ps2, ps3, ps4;
     ResultSet rs, rs1, rs2;
@@ -32,7 +32,7 @@ public class DAILYDOC extends javax.swing.JFrame {
     /**
      * Creates new form DAILYDOC
      */
-    public DAILYDOC() {
+    public InforAgency() {
         initComponents();
         User_load();
     }
@@ -380,7 +380,7 @@ public class DAILYDOC extends javax.swing.JFrame {
                DLTypeList.addItem(type);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             ps1 = con.prepareStatement("SELECT MaDaiLy, TenDaiLy, LOAIDAILY.Loai, DiaChi, Quan, DienThoai, Email, NgayTiepNhan, TienNo FROM DAILY, LOAIDAILY WHERE DAILY.Loai = LOAIDAILY.Loai");
@@ -410,7 +410,7 @@ public class DAILYDOC extends javax.swing.JFrame {
             }
              d.fireTableDataChanged();
         } catch (SQLException ex) {
-            Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
                                                                                         
                 
@@ -492,7 +492,7 @@ public class DAILYDOC extends javax.swing.JFrame {
                     }
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
@@ -514,7 +514,7 @@ public class DAILYDOC extends javax.swing.JFrame {
         try {
             DatePicker.setDate(sdf.parse(d.getValueAt(selectIndex, 7).toString()));
         } catch (ParseException ex) {
-            Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
         }
         TienNoField.setText(d.getValueAt(selectIndex, 8).toString());       
         MaDaiLyField.setEnabled(false);
@@ -581,7 +581,7 @@ public class DAILYDOC extends javax.swing.JFrame {
                     }
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jButton2ActionPerformed
     //làm mới
@@ -636,7 +636,7 @@ public class DAILYDOC extends javax.swing.JFrame {
             QuanList.setSelectedIndex(0);
             User_load();
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jButton3ActionPerformed
     //Tìm kiếm bản ghi
@@ -663,7 +663,7 @@ public class DAILYDOC extends javax.swing.JFrame {
             }
            
             } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -675,7 +675,7 @@ public class DAILYDOC extends javax.swing.JFrame {
     //thêm loại đại lý
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
-        ThemLoaiDaiLy addtype = new ThemLoaiDaiLy();
+        AddAgencyTypes addtype = new AddAgencyTypes();
         addtype.setVisible(true);
         addtype.setResizable(false);
         addtype.pack();
@@ -699,20 +699,21 @@ public class DAILYDOC extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DAILYDOC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InforAgency.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DAILYDOC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InforAgency.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DAILYDOC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InforAgency.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DAILYDOC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InforAgency.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DAILYDOC dl = new DAILYDOC();
+                InforAgency dl = new InforAgency();
                 dl.setVisible(true);
                 dl.setResizable(false);
                 dl.setTitle("Hồ sơ đại lý");

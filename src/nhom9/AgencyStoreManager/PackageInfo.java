@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author honkaiwaifu
  */
-public class MatHang extends javax.swing.JFrame {
+public class PackageInfo extends javax.swing.JFrame {
     Connection con = NewConnection.getConnection();
     PreparedStatement ps, ps1, ps2;
     ResultSet rs, rs1, rs2;
@@ -28,7 +28,7 @@ public class MatHang extends javax.swing.JFrame {
     /**
      * Creates new form MatHang
      */
-    public MatHang() {
+    public PackageInfo() {
         initComponents();
         user_load();
     }
@@ -234,7 +234,7 @@ public class MatHang extends javax.swing.JFrame {
             PriceField.setText("");
             user_load();              
            } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
        }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -270,7 +270,7 @@ public class MatHang extends javax.swing.JFrame {
             PriceField.setText("");
             user_load();              
            } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
        
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -290,7 +290,7 @@ public class MatHang extends javax.swing.JFrame {
             PriceField.setText("");
             user_load();              
            } catch (SQLException ex) {
-                Logger.getLogger(DAILYDOC.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
        
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -333,7 +333,7 @@ public class MatHang extends javax.swing.JFrame {
             }
              d.fireTableDataChanged();
         } catch (SQLException ex) {
-            Logger.getLogger(ThemLoaiDaiLy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddAgencyTypes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
@@ -353,20 +353,21 @@ public class MatHang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PackageInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PackageInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PackageInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PackageInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MatHang mh = new MatHang();
+                PackageInfo mh = new PackageInfo();
                 mh.setVisible(true);
                 mh.setResizable(false);
                 mh.setTitle("Mặt hàng");

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author honkaiwaifu
  */
-public class MainForm extends javax.swing.JFrame {
+public class HomePageForm extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
-    public MainForm() {
+    public HomePageForm() {
         initComponents();
     }
 
@@ -250,7 +250,7 @@ public class MainForm extends javax.swing.JFrame {
     //hồ sơ đại lý
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         
-        DAILYDOC dl = new DAILYDOC();
+        InforAgency dl = new InforAgency();
         dl.setVisible(true);
         dl.setResizable(false);
         dl.pack();
@@ -261,7 +261,7 @@ public class MainForm extends javax.swing.JFrame {
     //thu tiền
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         
-        ThuTien t = new ThuTien();
+        BillPayment t = new BillPayment();
         t.setVisible(true);
         t.setResizable(false);
         t.pack();
@@ -271,7 +271,7 @@ public class MainForm extends javax.swing.JFrame {
     //quy chế đại lý
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         
-        ToChucDaiLy tc = new ToChucDaiLy();
+        AgentOrganization tc = new AgentOrganization();
          tc.setVisible(true);
          tc.setResizable(false);
          tc.pack();
@@ -281,7 +281,7 @@ public class MainForm extends javax.swing.JFrame {
     //Thêm loại đại lý
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         
-        ThemLoaiDaiLy addtype = new ThemLoaiDaiLy();
+        AddAgencyTypes addtype = new AddAgencyTypes();
         addtype.setVisible(true);
         addtype.setResizable(false);
         addtype.pack();
@@ -291,7 +291,7 @@ public class MainForm extends javax.swing.JFrame {
     //xuất hàng
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         
-        PhieuXuatHang px = new PhieuXuatHang();
+        BillNotes px = new BillNotes();
         px.setVisible(true);
         px.setResizable(false);
         px.pack();
@@ -301,7 +301,7 @@ public class MainForm extends javax.swing.JFrame {
     //mặt hàng
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         
-        MatHang mh = new MatHang();
+        PackageInfo mh = new PackageInfo();
         mh.setVisible(true);
         mh.setResizable(false);
         mh.pack();
@@ -311,7 +311,7 @@ public class MainForm extends javax.swing.JFrame {
     //báo cáo doanh số
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         
-        BaoCaoDoanhSo firstrp = new BaoCaoDoanhSo();
+        ReportSalesMonth firstrp = new ReportSalesMonth();
         firstrp.setVisible(true);
         firstrp.setResizable(false);
         firstrp.pack();
@@ -321,7 +321,7 @@ public class MainForm extends javax.swing.JFrame {
     //công nợ tháng
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         
-        BaoCaoCongNo secrp = new BaoCaoCongNo();
+        ReportDebit secrp = new ReportDebit();
         secrp.setVisible(true);
         secrp.setResizable(false);
         secrp.pack();
@@ -346,21 +346,23 @@ public class MainForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomePageForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomePageForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomePageForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomePageForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MainForm mf = new MainForm();
+                HomePageForm mf = new HomePageForm();
                 mf.setVisible(true);
                 mf.setResizable(false);
                 mf.setTitle("Quản lý đại lý");

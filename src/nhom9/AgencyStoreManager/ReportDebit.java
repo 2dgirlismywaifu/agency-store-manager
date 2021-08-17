@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nhom9.quanlidaily;
+package nhom9.AgencyStoreManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +27,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author honkaiwaifu
  */
-public class BaoCaoCongNo extends javax.swing.JFrame {
+public class ReportDebit extends javax.swing.JFrame {
     Connection con = NewConnection.getConnection();
     PreparedStatement ps, ps1, ps2;
     ResultSet rs, rs1, rs2;
@@ -35,7 +35,7 @@ public class BaoCaoCongNo extends javax.swing.JFrame {
     /**
      * Creates new form BaoCaoCongNo
      */
-    public BaoCaoCongNo() {
+    public ReportDebit() {
         initComponents();
         user_load();
     }
@@ -246,7 +246,7 @@ public class BaoCaoCongNo extends javax.swing.JFrame {
                MaDLList.addItem(maDaiLy);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {           
             ps1 = con.prepareStatement("SELECT * FROM CONGNO ");
@@ -272,7 +272,7 @@ public class BaoCaoCongNo extends javax.swing.JFrame {
              d.fireTableDataChanged();
             
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     private void MaDLListPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_MaDLListPopupMenuWillBecomeInvisible
@@ -286,7 +286,7 @@ public class BaoCaoCongNo extends javax.swing.JFrame {
                 NameField.setText(String.valueOf(name));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PhieuXuatHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BillNotes.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_MaDLListPopupMenuWillBecomeInvisible
@@ -323,7 +323,7 @@ public class BaoCaoCongNo extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(BaoCaoDoanhSo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReportSalesMonth.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -356,7 +356,7 @@ public class BaoCaoCongNo extends javax.swing.JFrame {
             jReportsViewer.setFitWidthZoomRatio();
             jReportsViewer.setVisible(true);
         } catch (JRException ex) {
-            Logger.getLogger(BaoCaoDoanhSo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReportSalesMonth.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -377,20 +377,21 @@ public class BaoCaoCongNo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BaoCaoCongNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportDebit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BaoCaoCongNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportDebit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BaoCaoCongNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportDebit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BaoCaoCongNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportDebit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BaoCaoCongNo secrp = new BaoCaoCongNo();
+                ReportDebit secrp = new ReportDebit();
                 secrp.setVisible(true);
                 secrp.setResizable(false);
                 secrp.setTitle("Báo cáo công nợ");
