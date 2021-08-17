@@ -8,8 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-
-
+import javax.swing.JFrame;
 /**
  *
  * @author honkaiwaifu
@@ -31,4 +30,5 @@ public class NewConnection {
    }
          return con;
   }
+    
 }

@@ -176,8 +176,14 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="userfield">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="userfieldKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="PasswordField1">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PasswordField1KeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="ConnectStatus">
           <Properties>

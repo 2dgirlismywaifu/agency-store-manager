@@ -1,0 +1,1 @@
+Please use FixedSQLi for this software.

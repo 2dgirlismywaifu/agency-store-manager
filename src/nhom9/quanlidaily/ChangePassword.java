@@ -5,6 +5,10 @@
  */
 package nhom9.quanlidaily;
 
+import java.awt.event.KeyEvent;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,6 +72,24 @@ public class ChangePassword extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Xác nhận mật khẩu");
+
+        oldpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                oldpasswordKeyPressed(evt);
+            }
+        });
+
+        newpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                newpasswordKeyPressed(evt);
+            }
+        });
+
+        confirmpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                confirmpasswordKeyPressed(evt);
+            }
+        });
 
         ChangeButton.setText("Thay đổi");
         ChangeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +197,30 @@ public class ChangePassword extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+     //bytes to hex
+    private static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    }
+    //hàm mã hoá SHA-256 (không thể giải mã ngược về lại)
+    private String SHA256(char[] c) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] encodedhash = digest.digest(
+                (new String(c)).getBytes(StandardCharsets.UTF_8));
+           
+            return bytesToHex(encodedhash);
+        } catch (NoSuchAlgorithmException ex) {
+            return "";
+        }
+    }
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         // TODO add your handling code here:
         int asking0 = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn thoát?","Thay dổi mật khẩu",JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
@@ -186,17 +232,15 @@ public class ChangePassword extends javax.swing.JFrame {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
     }//GEN-LAST:event_CancelButtonActionPerformed
-
-    private void ChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeButtonActionPerformed
-        // TODO add your handling code here:
-        String oldpass, newpass, confpass;
-        oldpass = oldpassword.getText();
+    //chức năng thay đổi mật khẩu
+    private void ChangePassword_form() {
+         String oldpass, newpass, confpass;
+        oldpass = SHA256(oldpassword.getPassword() );
         newpass = newpassword.getText();
-        confpass = confirmpassword.getText();
-        String sql0 = "UPDATE DANGNHAP SET password = '"+newpass+"' "
-                + "WHERE username = 'admin' ";
-        String sql = "SELECT * FROM DANGNHAP WHERE username = 'admin' AND password = '"+oldpass+"' ";
-         if(oldpass.equals("")){
+        confpass = confirmpassword.getText() ;
+        
+        
+         if(oldpassword.getText().equals("")){
             JOptionPane.showMessageDialog(this,"Vui lòng nhập mật khẩu cũ!",
                     "Thay đổi mật khẩu",JOptionPane.ERROR_MESSAGE);   
         }
@@ -213,11 +257,13 @@ public class ChangePassword extends javax.swing.JFrame {
             PreparedStatement ps , ps0;  
             ResultSet rs;
             try {
-                ps = con.prepareStatement(sql);
-                ps0 = con.prepareStatement(sql0);
+                ps = con.prepareStatement("SELECT * FROM DANGNHAP WHERE username = 'admin' AND password = ? ");
+                ps.setString(1, oldpass );
+                ps0 = con.prepareStatement("UPDATE DANGNHAP SET password = ? WHERE username = 'admin' ");
+                ps0.setString(1, newpass);
                 rs = ps.executeQuery();
-                while (rs.next()) {
-                    if (rs.getString("password").equals(oldpass)) {
+               
+                    if (rs.next() ) {
                         if (newpass.equals(confpass)) { 
                             ps0.executeUpdate();
                             JOptionPane.showMessageDialog(null,"Thay đổi mật khẩu thành công!\nVui lòng đăng nhập lại!",
@@ -245,11 +291,16 @@ public class ChangePassword extends javax.swing.JFrame {
                        newpassword.setText("");
                        confirmpassword.setText(""); 
                     }
-                }
+                
             } catch (SQLException ex) {
                java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }           
          } 
+    }
+    //nút thay đổi mật khẩu
+    private void ChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeButtonActionPerformed
+        // TODO add your handling code here:
+       ChangePassword_form();
     }//GEN-LAST:event_ChangeButtonActionPerformed
 
     private void ShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPasswordActionPerformed
@@ -268,6 +319,40 @@ public class ChangePassword extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
        new MainForm().setVisible(true);
     }//GEN-LAST:event_formWindowClosing
+
+    private void oldpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oldpasswordKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                if(oldpassword.getText().equals("")){
+                JOptionPane.showMessageDialog(this,"Nhập mật khẩu cũ trước!",
+                "Thông báo",JOptionPane.ERROR_MESSAGE);
+                } else {
+                    newpassword.requestFocus();
+                }
+            }
+    }//GEN-LAST:event_oldpasswordKeyPressed
+
+    private void newpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newpasswordKeyPressed
+        // TODO add your handling code here:
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                if(newpassword.getText().equals("")){
+                JOptionPane.showMessageDialog(this,"Nhập mật khẩu mới trước!",
+                "Thông báo",JOptionPane.ERROR_MESSAGE);
+                } else {
+                    confirmpassword.requestFocus();
+                }
+            }
+    }//GEN-LAST:event_newpasswordKeyPressed
+    
+    private void confirmpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmpasswordKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                ChangePassword_form();
+            }
+    }//GEN-LAST:event_confirmpasswordKeyPressed
     
     /**
      * @param args the command line arguments

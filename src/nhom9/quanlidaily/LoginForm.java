@@ -6,8 +6,12 @@
 package nhom9.quanlidaily;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
+import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,6 +90,18 @@ public class LoginForm extends javax.swing.JFrame {
         CheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CheckBox1ActionPerformed(evt);
+            }
+        });
+
+        userfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                userfieldKeyPressed(evt);
+            }
+        });
+
+        PasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PasswordField1KeyPressed(evt);
             }
         });
 
@@ -169,7 +185,31 @@ public class LoginForm extends javax.swing.JFrame {
            this.ConnectStatus.setForeground(Color.green);
         } 
     }//GEN-LAST:event_formWindowOpened
-
+    //bytes to hex
+    private static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    }
+    //hàm mã hoá SHA-256 (không thể giải mã ngược về lại)
+    private String SHA256(char[] c) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] encodedhash = digest.digest(
+                (new String(c)).getBytes(StandardCharsets.UTF_8));
+           
+            return bytesToHex(encodedhash);
+        } catch (NoSuchAlgorithmException ex) {
+            return "";
+        }
+    }
+    
     private void CheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox1ActionPerformed
         // TODO add your handling code here:
         if (CheckBox1.isSelected()){
@@ -180,8 +220,8 @@ public class LoginForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_CheckBox1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    //login function
+    private void Login_form() {
         PreparedStatement ps;
         ResultSet rs;
         if(userfield.getText().equals("")){
@@ -196,7 +236,7 @@ public class LoginForm extends javax.swing.JFrame {
             try {
                 ps = con.prepareStatement("SELECT * FROM DANGNHAP WHERE username = ? AND password = ? ");
                 ps.setString(1, userfield.getText());
-                ps.setString(2, String.valueOf(PasswordField1.getText()));
+                ps.setString(2, SHA256(PasswordField1.getPassword()));
                 rs = ps.executeQuery();
 
                 if(rs.next()) {
@@ -220,7 +260,32 @@ public class LoginForm extends javax.swing.JFrame {
                    java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
         }
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Login_form();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+    //trườnng nhập mật khẩu
+    private void PasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordField1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                Login_form();
+            }
+    }//GEN-LAST:event_PasswordField1KeyPressed
+    //trường nhập user
+    private void userfieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userfieldKeyPressed
+        // TODO add your handling code here:
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                if(userfield.getText().equals("")){
+                JOptionPane.showMessageDialog(this,"Nhập tên tài khoản đăng nhập!",
+                "Thông báo",JOptionPane.ERROR_MESSAGE);
+                } else {
+                    PasswordField1.requestFocus();
+                }
+            }
+    }//GEN-LAST:event_userfieldKeyPressed
 
     /**
      * @param args the command line arguments
