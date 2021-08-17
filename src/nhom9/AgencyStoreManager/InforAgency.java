@@ -17,6 +17,7 @@ import java.sql.ResultSetMetaData;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
+import java.util.regex.Pattern;
 import net.proteanit.sql.DbUtils;
 
 
@@ -420,6 +421,16 @@ public class InforAgency extends javax.swing.JFrame {
         Choose02.setSelected(false);
         Choose03.setSelected(false);
     }
+    //hàm kiểm tra email nhập vào có tên miền tồn tại không?
+    public static String email_Validation (String email) {
+        String email_Pattern = "^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$";
+        Pattern pattern = Pattern.compile(email_Pattern);
+        if (pattern.matcher(email).matches()) {
+            return "Vaild";
+        } else {
+            return "Invaild";
+        }
+    }
     
     //thêm đại lý
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -431,7 +442,8 @@ public class InforAgency extends javax.swing.JFrame {
         addr = AddrField.getText();
         quan = QuanList.getSelectedItem().toString();
         tel = TelField.getText();
-        email = EmailField.getText();       
+        email = EmailField.getText();
+        String status = email_Validation(email);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         date = sdf.format(DatePicker.getDate());
         tienno = TienNoField.getText();
@@ -446,7 +458,7 @@ public class InforAgency extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Vui lòng nhập đầy đủ thông tin",
                 "Thông báo",JOptionPane.ERROR_MESSAGE);
         
-        } else {           
+        } else if (status.equals("Vaild")) {           
             try {
                 ps = con.prepareStatement("SELECT * FROM TOCHUCDAILY");
                 rs = ps.executeQuery();
@@ -482,9 +494,7 @@ public class InforAgency extends javax.swing.JFrame {
                         TelField.setText("");
                         EmailField.setText("");
                         TienNoField.setText("");
-                       
                         
-
                         User_load();
                         } else {
                             JOptionPane.showMessageDialog(this,"Số đại lý vượt tối đa!","Đại lý",JOptionPane.ERROR_MESSAGE);
@@ -494,7 +504,9 @@ public class InforAgency extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+           } else {
+          JOptionPane.showMessageDialog(this,"Email không tồn tại!",
+                "Thông báo",JOptionPane.ERROR_MESSAGE); 
         }
        
        
@@ -523,16 +535,17 @@ public class InforAgency extends javax.swing.JFrame {
     //sửa bản ghi
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String madaily, type, ten, addr, quan, tel, email, date, tienno;
-       
         type = DLTypeList.getSelectedItem().toString();
         ten = DaiLyField.getText();
         addr = AddrField.getText();
         quan = QuanList.getSelectedItem().toString();
         tel = TelField.getText();
         email = EmailField.getText(); 
+        String status = email_Validation(email);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         date = sdf.format(DatePicker.getDate());
         tienno = TienNoField.getText(); 
+        if (status.equals("Vaild")) {
         try {
                 ps = con.prepareStatement("SELECT * FROM TOCHUCDAILY");
                 rs = ps.executeQuery();
@@ -561,6 +574,7 @@ public class InforAgency extends javax.swing.JFrame {
                             ps2.setString(7,date);
                             ps2.setString(8,tienno);
                             ps2.setString(9,madaily);
+                            
                             ps2.executeUpdate();
                             JOptionPane.showMessageDialog(this,"Sửa đại lý thành công","Đại lý",JOptionPane.INFORMATION_MESSAGE);
                             /*DLTypeList.removeAllItems();*/
@@ -583,6 +597,10 @@ public class InforAgency extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(InforAgency.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            JOptionPane.showMessageDialog(this,"Email không tồn tại!",
+                "Thông báo",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
     //làm mới
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
