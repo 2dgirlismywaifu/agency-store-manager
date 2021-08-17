@@ -352,7 +352,7 @@ public class ReportSalesMonth extends javax.swing.JFrame {
         String month = MonthList.getSelectedItem().toString();
         try {   
             Hashtable map = new Hashtable();
-            JasperReport report = JasperCompileManager.compileReport("C:\\Users\\ngoth\\OneDrive\\Documents\\NetBeansProjects\\Nhom 9\\src\\report\\BAOCAODOANHSO.jrxml");
+            JasperReport report = JasperCompileManager.compileReport("C:\\Users\\ngoth\\OneDrive\\Documents\\NetBeansProjects\\Agency-Store-Manager\\src\\Report\\ReportSale.jrxml");
             
             map.put("getMonth", month);
             

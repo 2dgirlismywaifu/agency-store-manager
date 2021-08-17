@@ -347,7 +347,7 @@ public class ReportDebit extends javax.swing.JFrame {
         String month = MonthList.getSelectedItem().toString();
         try {
             Hashtable map = new Hashtable();
-            JasperReport report = JasperCompileManager.compileReport("C:\\Users\\ngoth\\OneDrive\\Documents\\NetBeansProjects\\Nhom 9\\src\\report\\BAOCAOCONGNO.jrxml");
+            JasperReport report = JasperCompileManager.compileReport("C:\\Users\\ngoth\\OneDrive\\Documents\\NetBeansProjects\\Agency-Store-Manager\\src\\Report\\ReportDebit.jrxml");
 
             map.put("getMonth", month);
 

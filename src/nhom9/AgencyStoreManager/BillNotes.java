@@ -526,7 +526,7 @@ public class BillNotes extends javax.swing.JFrame {
        maphieu = MaPhieuXuatField.getText();
         try {   
             Hashtable map = new Hashtable();
-            JasperReport report = JasperCompileManager.compileReport("C:\\Users\\ngoth\\OneDrive\\Documents\\NetBeansProjects\\Nhom 9\\src\\report\\PHIEUXUATHANG.jrxml");
+            JasperReport report = JasperCompileManager.compileReport("C:\\Users\\ngoth\\OneDrive\\Documents\\NetBeansProjects\\Agency-Store-Manager\\src\\Report\\BillNotes.jrxml");
             
             map.put("MaDL", madl);
             map.put("MaPX", maphieu);
