@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -196,7 +197,7 @@ public class ChangePassword extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+     /*  dừng sử dụng sha256
      //bytes to hex
     private static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
@@ -220,7 +221,7 @@ public class ChangePassword extends javax.swing.JFrame {
         } catch (NoSuchAlgorithmException ex) {
             return "";
         }
-    }
+    } */
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         // TODO add your handling code here:
         int asking0 = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn thoát?","Thay dổi mật khẩu",JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
@@ -234,8 +235,8 @@ public class ChangePassword extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelButtonActionPerformed
     //chức năng thay đổi mật khẩu
     private void ChangePassword_form() {
-         String oldpass, newpass, confpass;
-        oldpass = SHA256(oldpassword.getPassword() );
+        String oldpass, newpass, confpass;
+        oldpass = oldpassword.getText();
         newpass = newpassword.getText();
         confpass = confirmpassword.getText() ;
         
@@ -257,41 +258,41 @@ public class ChangePassword extends javax.swing.JFrame {
             PreparedStatement ps , ps0;  
             ResultSet rs;
             try {
-                ps = con.prepareStatement("SELECT * FROM DANGNHAP WHERE username = 'admin' AND password = ? ");
-                ps.setString(1, oldpass );
+                ps = con.prepareStatement("SELECT * FROM DANGNHAP WHERE username = 'admin'");
                 ps0 = con.prepareStatement("UPDATE DANGNHAP SET password = ? WHERE username = 'admin' ");
                 ps0.setString(1, newpass);
-                rs = ps.executeQuery();
-               
+                rs = ps.executeQuery();              
                     if (rs.next() ) {
-                        if (newpass.equals(confpass)) { 
-                            ps0.executeUpdate();
-                            JOptionPane.showMessageDialog(null,"Thay đổi mật khẩu thành công!\nVui lòng đăng nhập lại!",
-                                "",JOptionPane.INFORMATION_MESSAGE);
-                            this.dispose();
-                            new HomePageForm().dispose();
-                            LoginForm lf = new LoginForm();
-                            lf.setVisible(true);
-                            lf.setResizable(false);
-                            lf.pack();
-                            lf.setLocationRelativeTo(null);
-                            lf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        }
-                        else if (!newpass.equals(confpass)) {
-                            JOptionPane.showMessageDialog(null,"Mật khẩu mới không trùng khớp",
-                                "Thay đổi mật khẩu",JOptionPane.ERROR_MESSAGE);
-                            newpassword.setText("");
-                            confirmpassword.setText(""); 
-                        } 
-                    }                 
-                    else {
-                       JOptionPane.showMessageDialog(null,"Mật khẩu cũ không trùng khớp",
+                        String getpassword = String.valueOf(rs.getString("password"));
+                        if (BCrypt.checkpw( oldpass, getpassword)) {
+                            if (newpass.equals(confpass)) { 
+                                ps0.executeUpdate();
+                                JOptionPane.showMessageDialog(null,"Thay đổi mật khẩu thành công!\nVui lòng đăng nhập lại!"
+                                        + "\nSau khi đăng nhập lại, hãy xem mã phục hồi mới mà hệ thống đã tạo.",
+                                    "",JOptionPane.INFORMATION_MESSAGE);
+                                this.dispose();
+                                new HomePageForm().dispose();
+                                LoginForm lf = new LoginForm();
+                                lf.setVisible(true);
+                                lf.setResizable(false);
+                                lf.pack();
+                                lf.setLocationRelativeTo(null);
+                                lf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            }
+                            else if (!newpass.equals(confpass)) {
+                                JOptionPane.showMessageDialog(null,"Mật khẩu mới không trùng khớp",
+                                    "Thay đổi mật khẩu",JOptionPane.ERROR_MESSAGE);
+                                newpassword.setText("");
+                                confirmpassword.setText(""); 
+                            } 
+                        }  else {
+                        JOptionPane.showMessageDialog(null,"Mật khẩu cũ không trùng khớp",
                             "Thay đổi mật khẩu",JOptionPane.ERROR_MESSAGE); 
-                       oldpassword.setText("");
-                       newpassword.setText("");
-                       confirmpassword.setText(""); 
+                         oldpassword.setText("");
+                        newpassword.setText("");
+                        confirmpassword.setText(""); 
                     }
-                
+                }    
             } catch (SQLException ex) {
                java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }           

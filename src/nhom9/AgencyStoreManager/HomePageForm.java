@@ -5,20 +5,31 @@
  */
 package nhom9.AgencyStoreManager;
 
+import java.sql.Connection;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author honkaiwaifu
  */
-public class HomePageForm extends javax.swing.JFrame {
-
+public final class HomePageForm extends javax.swing.JFrame {
+    Connection con = NewConnection.getConnection();
+    PreparedStatement ps;
+    ResultSet rs;
+    
     /**
      * Creates new form Main
      */
     public HomePageForm() {
         initComponents();
+        
+        
     }
 
     /**
@@ -36,7 +47,9 @@ public class HomePageForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        UserName = new javax.swing.JMenuItem();
         Changpassword = new javax.swing.JMenuItem();
+        RecoveryKey = new javax.swing.JMenuItem();
         Logout = new javax.swing.JMenuItem();
         ExitApplication = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -51,37 +64,46 @@ public class HomePageForm extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         jMenuItem8.setText("jMenuItem8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText(" PHẦN MỀM QUẢN LÝ ĐẠI LÝ");
+        jLabel2.setText("DEALER MANAGEMENT SOFTWARE (POWERED BY ELYSIA)");
         jLabel2.setToolTipText("");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/wholesale-2019.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/2021081320041749710 (2).png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1160, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenu1.setText("File");
+
+        UserName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8-name-16.png"))); // NOI18N
+        jMenu1.add(UserName);
 
         Changpassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/modify-key-icon (1).png"))); // NOI18N
         Changpassword.setText("Thay đổi mật khẩu");
@@ -91,6 +113,15 @@ public class HomePageForm extends javax.swing.JFrame {
             }
         });
         jMenu1.add(Changpassword);
+
+        RecoveryKey.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/modify-key-icon (1).png"))); // NOI18N
+        RecoveryKey.setText("Khoá phục hồi");
+        RecoveryKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RecoveryKeyActionPerformed(evt);
+            }
+        });
+        jMenu1.add(RecoveryKey);
 
         Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/Logout-icon.png"))); // NOI18N
         Logout.setText("Đăng xuất");
@@ -202,52 +233,41 @@ public class HomePageForm extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu4);
 
+        jMenu6.setText("Về");
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8-info-16.png"))); // NOI18N
+        jMenuItem7.setText("Thông tin");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem7);
+
+        jMenuBar2.add(jMenu6);
+
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    //đăng xuất
-    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
-        // TODO add your handling code here:
-         this.dispose();
-         LoginForm lf = new LoginForm();
-         lf.setVisible(true);
-         lf.setResizable(false);
-         lf.pack();
-         lf.setLocationRelativeTo(null);
-         lf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-         lf.setTitle("Đăng nhập hệ thống");
-    }//GEN-LAST:event_LogoutActionPerformed
-    //thoát pm
-    private void ExitApplicationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitApplicationActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        System.exit(0);
-    }//GEN-LAST:event_ExitApplicationActionPerformed
-    //thay đổi mật khẩu
-    private void ChangpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangpasswordActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        ChangePassword cp = new ChangePassword();
-        cp.setVisible(true);
-        cp.setResizable(false);
-        cp.pack();
-        cp.setLocationRelativeTo(null);
-        cp.setTitle("Thay đổi mật khẩu");
-    }//GEN-LAST:event_ChangpasswordActionPerformed
-    //hồ sơ đại lý
+
+   //hồ sơ đại lý
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         
         InforAgency dl = new InforAgency();
@@ -329,6 +349,78 @@ public class HomePageForm extends javax.swing.JFrame {
         secrp.setTitle("Báo cáo công nợ");
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+   //thoát pm
+    private void ExitApplicationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitApplicationActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        System.exit(0);
+    }//GEN-LAST:event_ExitApplicationActionPerformed
+//đăng xuất
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        // TODO add your handling code here:
+         this.dispose();
+         LoginForm lf = new LoginForm();
+         lf.setVisible(true);
+         lf.setResizable(false);
+         lf.pack();
+         lf.setLocationRelativeTo(null);
+         lf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+         lf.setTitle("Đăng nhập hệ thống");
+    }
+//GEN-FIRST:event_LogoutActionPerformed
+
+//GEN-LAST:event_LogoutActionPerformed
+                                              
+  //thay đổi mật khẩu
+    private void ChangpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangpasswordActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        ChangePassword cp = new ChangePassword();
+        cp.setVisible(true);
+        cp.setResizable(false);
+        cp.pack();
+        cp.setLocationRelativeTo(null);
+        cp.setTitle("Thay đổi mật khẩu");
+    }
+//GEN-LAST:event_ChangpasswordActionPerformed
+    //khoá phục hồi
+    private void RecoveryKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecoveryKeyActionPerformed
+        // TODO add your handling code here:
+        RecoveryKey rk = new RecoveryKey();
+       
+        rk.setVisible(true);
+        rk.setResizable(false);
+        rk.pack();
+        rk.setLocationRelativeTo(null);
+        rk.setTitle("Khoá phục hồi");
+        try {
+        ps = con.prepareStatement("SELECT * FROM DANGNHAP WHERE username = ?");
+        ps.setString(1, UserName.getText());
+        rs = ps.executeQuery();
+        if (rs.next()) {
+             rk.username.setText(rs.getString(2));
+            }
+                } catch (SQLException ex) {
+                    java.util.logging.Logger.getLogger(HomePageForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+    }//GEN-LAST:event_RecoveryKeyActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        AboutSoftware as = new AboutSoftware();
+        as.setVisible(true);
+        as.setResizable(false);
+        as.pack();
+        as.setLocationRelativeTo(null);
+        as.setTitle("Về chúng tôi");
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -362,7 +454,9 @@ public class HomePageForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 HomePageForm mf = new HomePageForm();
+                mf.UserName.setEnabled(false);
                 mf.setVisible(true);
                 mf.setResizable(false);
                 mf.setTitle("Quản lý đại lý");
@@ -374,6 +468,8 @@ public class HomePageForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem Changpassword;
     private javax.swing.JMenuItem ExitApplication;
     private javax.swing.JMenuItem Logout;
+    private javax.swing.JMenuItem RecoveryKey;
+    public javax.swing.JMenuItem UserName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -381,6 +477,7 @@ public class HomePageForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -389,6 +486,7 @@ public class HomePageForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
