@@ -3,3 +3,4 @@
 2. Login will use Password Hashing to login
 3. Change Password Function only encrypted oldpassword to make sure old password has been typed match with password login stored in Database
 4. Newpass and confimpass will not encrypt to SHA256. After click "Change Password", system will automatic encrypt password (thanks PasswordHasing Trigger)
+5. Add email validation
