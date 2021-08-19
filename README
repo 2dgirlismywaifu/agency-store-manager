@@ -16,3 +16,6 @@
 1. I make a mistake at ForgotPassword form. At New Password and Confirm Password, I did not use PasswordField so when you type the password, all characters type
 not set to '*'. I already fixed it
 2. Fix when opened About Form, HomePage Form disapear. 
+
+===================================================================================================================================================================
+This software can run on Linux System. CLI Linux system need GUI to run.
