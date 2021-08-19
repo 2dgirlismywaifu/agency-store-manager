@@ -12,3 +12,7 @@
 5. Add show recovery key option for recovery password
 6. Add recovery password option at login form
 7. Still research Multi-user UI/UX. At this time, this program only for one user.
+--19/08/2021
+1. I make a mistake at ForgotPassword form. At New Password and Confirm Password, I did not use PasswordField so when you type the password, all characters type
+not set to '*'. I already fixed it
+2. Fix when opened About Form, HomePage Form disapear. 
