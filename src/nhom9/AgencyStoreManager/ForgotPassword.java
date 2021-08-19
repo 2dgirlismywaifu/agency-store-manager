@@ -49,12 +49,12 @@ public class ForgotPassword extends javax.swing.JFrame {
         VerifyButton = new javax.swing.JButton();
         StatusLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        NewPassField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        ConfirmPassField = new javax.swing.JTextField();
         Changepass = new javax.swing.JButton();
         Cancelbuttom = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        NewPassField = new javax.swing.JPasswordField();
+        ConfirmPassField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -92,21 +92,9 @@ public class ForgotPassword extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Mật khẩu mới");
 
-        NewPassField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                NewPassFieldKeyPressed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Xác nhận mật khẩu");
-
-        ConfirmPassField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ConfirmPassFieldKeyPressed(evt);
-            }
-        });
 
         Changepass.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Changepass.setText("Thay đổi");
@@ -156,10 +144,10 @@ public class ForgotPassword extends javax.swing.JFrame {
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NewPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ConfirmPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(NewPassField)
+                                    .addComponent(ConfirmPassField, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))))
                         .addGap(0, 45, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -192,11 +180,11 @@ public class ForgotPassword extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NewPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NewPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ConfirmPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ConfirmPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
@@ -256,28 +244,9 @@ public class ForgotPassword extends javax.swing.JFrame {
                 verifyrecovery();
             }
     }//GEN-LAST:event_RecoveryFieldKeyPressed
-
-    private void NewPassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NewPassFieldKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-            {
-                if(NewPassField.getText().equals("")){
-                JOptionPane.showMessageDialog(this,"Nhập mật khẩu mới!",
-                "Thông báo",JOptionPane.ERROR_MESSAGE);
-                } else {
-                    ConfirmPassField.requestFocus();
-                }
-            }
-    }//GEN-LAST:event_NewPassFieldKeyPressed
-
-    private void ConfirmPassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConfirmPassFieldKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-            {
-                changepassword();
-            }
-    }//GEN-LAST:event_ConfirmPassFieldKeyPressed
     private void User_load() {
+        NewPassField.setEchoChar('*');
+        ConfirmPassField.setEchoChar('*');
         NewPassField.setEnabled(false);
         ConfirmPassField.setEnabled(false);
     }
@@ -295,6 +264,7 @@ public class ForgotPassword extends javax.swing.JFrame {
                 if (rs.next()) {
                     StatusLabel.setText("Chào mừng trở lại " + rs.getString(2));
                     StatusLabel.setForeground(Color.green);
+                    jLabel7.setEnabled(false);
                     
                     NewPassField.setEnabled(true);
                     ConfirmPassField.setEnabled(true);
@@ -394,8 +364,8 @@ public class ForgotPassword extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelbuttom;
     private javax.swing.JButton Changepass;
-    private javax.swing.JTextField ConfirmPassField;
-    private javax.swing.JTextField NewPassField;
+    private javax.swing.JPasswordField ConfirmPassField;
+    private javax.swing.JPasswordField NewPassField;
     private javax.swing.JTextField RecoveryField;
     private javax.swing.JLabel StatusLabel;
     private javax.swing.JButton VerifyButton;
