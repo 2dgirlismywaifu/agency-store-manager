@@ -35,7 +35,7 @@ public final class RecoveryKey extends javax.swing.JFrame {
         text += "4. Khi thay đổi mật khẩu, một mã phục hồi mới cũng sẽ được tạo ra, mã phục hồi cũ sẽ không sử dụng được nữa.<br>";
         text += "5. Nếu bạn làm mất khoá phục hồi, không có cách nào để phục hồi tài khoản";
         Notes.setText(text);
-        
+        RecoveryField.setEditable(false);
         
         
     }

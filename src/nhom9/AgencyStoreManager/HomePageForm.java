@@ -412,7 +412,7 @@ public final class HomePageForm extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        dispose();
+        
         AboutSoftware as = new AboutSoftware();
         as.setVisible(true);
         as.setResizable(false);

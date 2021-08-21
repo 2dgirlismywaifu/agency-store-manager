@@ -7,11 +7,6 @@ package nhom9.AgencyStoreManager;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.nio.charset.StandardCharsets;
-import java.security.NoSuchAlgorithmException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
-import java.security.MessageDigest;
 import org.mindrot.jbcrypt.BCrypt;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;

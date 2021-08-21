@@ -4,3 +4,18 @@
 3. Change Password Function only encrypted oldpassword to make sure old password has been typed match with password login stored in Database
 4. Newpass and confimpass will not encrypt to SHA256. After click "Change Password", system will automatic encrypt password (thanks PasswordHasing Trigger)
 5. Add email validation
+--18/08/2021
+1. No longer use SHA256 to Hash main password, BCrypt has been replaced to hash main password.
+2. Add recovery key and salt. RecoveryKey use main password and salt to hash.
+3. New homepage wallpaper. Now it powered by my new waifu Elysia (I still wait her on next update Honkai Impact 3 :) )
+4. Add About us option
+5. Add show recovery key option for recovery password
+6. Add recovery password option at login form
+7. Still research Multi-user UI/UX. At this time, this program only for one user.
+--19/08/2021
+1. I make a mistake at ForgotPassword form. At New Password and Confirm Password, I did not use PasswordField so when you type the password, all characters type
+not set to '*'. I already fixed it
+2. Fix when opened About Form, HomePage Form disapear. 
+
+===================================================================================================================================================================
+This software can run on Linux System. CLI Linux system need GUI to run.
