@@ -19,10 +19,10 @@ public class NewConnection {
         Connection con =null;
          try {
              //đổi sqlserver khi dùng trên máy khác
-    String dbURL = "jdbc:sqlserver://DESKTOP-H9PTNTN\\SQLEXPRESS:1433;"
+    String dbURL = "jdbc:sqlserver://KeqingWaifu-OEM\\SQLEXPRESS:1433;"
             + "databaseName=QUANLYDAILY;"
             + "user=sa;"
-            + "password=1234";
+            + "password=Long@1411";
     con = DriverManager.getConnection(dbURL);
    } catch (SQLException ex) {
        JOptionPane.showMessageDialog(null, "Kết nối SQL thất bại\nChương trình sẽ thoát bây giờ!","Thông báo", JOptionPane.ERROR_MESSAGE);
