@@ -7,8 +7,6 @@ package nhom9.AgencyStoreManager;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -119,6 +117,18 @@ public class ForgotPassword extends javax.swing.JFrame {
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel7MousePressed(evt);
+            }
+        });
+
+        NewPassField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NewPassFieldKeyPressed(evt);
+            }
+        });
+
+        ConfirmPassField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ConfirmPassFieldKeyPressed(evt);
             }
         });
 
@@ -244,6 +254,32 @@ public class ForgotPassword extends javax.swing.JFrame {
                 verifyrecovery();
             }
     }//GEN-LAST:event_RecoveryFieldKeyPressed
+
+    private void ConfirmPassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConfirmPassFieldKeyPressed
+        // TODO add your handling code here:
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                if(NewPassField.getText().equals("")){
+                JOptionPane.showMessageDialog(this,"Vui lòng xác nhận mật khẩu mới!",
+                    "Thay đổi mật khẩu",JOptionPane.ERROR_MESSAGE);
+                } else {
+                    changepassword();
+                }
+            }
+    }//GEN-LAST:event_ConfirmPassFieldKeyPressed
+
+    private void NewPassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NewPassFieldKeyPressed
+        // TODO add your handling code here:
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                if(NewPassField.getText().equals("")){
+                JOptionPane.showMessageDialog(this,"Vui lòng nhập mật khẩu mới!",
+                    "Thay đổi mật khẩu",JOptionPane.ERROR_MESSAGE);
+                } else {
+                    ConfirmPassField.requestFocus();
+                }
+            }
+    }//GEN-LAST:event_NewPassFieldKeyPressed
     private void User_load() {
         NewPassField.setEchoChar('*');
         ConfirmPassField.setEchoChar('*');
